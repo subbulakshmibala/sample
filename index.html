@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>calculator</title>
+	<link rel="stylesheet" type="text/css" href="calcstyle.css">
+</head>
+<body>
+	<div class="container">
+		<div class="calculator">
+
+			<input type="text" placeholder="0" id="output">
+			<button onclick="c1()"> C</button>
+			<button onclick="del()"> DEL</button>
+			<button onclick="calPercnt()">%</button>
+			<button onclick="display('/')">/</button>
+			<button onclick="display('7')">7</button>
+			<button onclick="display('8')">8</button>
+			<button onclick="display('9')">9</button>
+			<button onclick="display('*')">*</button>
+			<button onclick="display('4')">4</button>
+			<button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('.')">.</button>
+            
+            <button onclick="display('0')">0</button>
+
+            
+
+
+    <button onclick="calculate()" class="equal">=</button>
+</div>
+</div>
+<script>
+     document.addEventListener("click",newfunction); 
+     document.addEventListener("input",newfunction);
+     document.getElementById("output").addEventListener("input",function(e){
+     	const regexp = /[0-9,+,-,/,*]+/g;
+     	// if(!regexp.test(e.target.value)){
+     	// 	e.target.value = "";
+     	// }
+     	var b=e.target.value;
+     	var c=b.match(regexp);
+     	e.target.value = c;
+
+     });
+
+
+	function newfunction(){
+     var y =document.getElementById("output").value;
+
+		for(let i=0;i<y.length;i++){
+
+			let z=y[i]+y[i-1];
+		
+			
+			if(y[i]===y[i-1]){
+			
+			if(z=="++"||z=="--"||z=="**"||z=="//"||z=="%%"){
+				result.value = result.value.slice(0,-1);
+				console.log(result.value)
+			}
+		}
+		if(
+			z=="+*"||z=="+/"||z=="+-"||z=="+%"||
+			z=="-*"||	z=="-/"||z=="-+"||z=="-%"||
+			z=="/*"||z=="/-"||z=="/+"||z=="/%"||
+			z=="*+"||z=="*-"||z=="*/"||z=="*%"||
+			z=="%*"||z=="%/"||z=="%-"||z=="%+")
+				{
+				result.value = result.value.slice(0,-1);
+
+				}
+
+}
+}
+	let result = document.getElementById("output");
+	function display(x)
+	{
+		result.value += x;
+
+}
+	function calculate()
+	{
+	if(result.value=="")
+	 {
+	 	result.value="";
+
+	}
+	else{
+	
+try
+	{
+		result.value=eval(result.value);
+       }
+       catch(err)
+       {
+         	result.value="";
+       }
+   }
+}
+     
+
+	function calPercnt()
+	{
+		let result = document.getElementById("output");
+		result.value = eval(result.value)/100;
+       }
+       
+        function c1()
+	{
+	
+		result.value="";
+	}
+	function del()
+	{
+		result.value = result.value.slice(0,-1);
+	}
+	
+
+</script>
+</body>
+</html>
